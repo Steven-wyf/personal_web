@@ -4,17 +4,18 @@ import { useLocale } from '../context/LocaleContext.jsx';
 const Hero = () => {
   const { locale } = useLocale();
   const data = hero[locale];
-  const greeting = locale === 'zh' ? '你好，我是 ' : "Hi, I'm ";
+  const nameRegex = /(.*?)(?:\((.*)\))?$/;
+  const [, primaryName = data.name, altName = ''] = data.name.match(nameRegex) || [];
 
   return (
     <section id="hero" className="section section--hero">
       <div className="shell section__inner hero__inner">
         <div className="hero__main">
-          <span className="hero__kicker">{data.role}</span>
           <h1 className="hero__title">
-            {greeting}
-            <span>{data.name}</span>
+            <span className="hero__title-main">{primaryName.trim()}</span>
+            {altName && <span className="hero__title-accent">{altName}</span>}
           </h1>
+          <span className="hero__kicker">{data.role}</span>
           <p className="hero__headline">{data.headline}</p>
           <p className="hero__description">{data.description}</p>
           <div className="hero__meta">

@@ -26,7 +26,6 @@ const Header = () => {
       <div className="shell site-header__bar">
         <a className="branding" href="#hero">
           <span className="branding__name">{heroContent.name}</span>
-          <span className="branding__role">{heroContent.role}</span>
         </a>
         <nav className={`nav ${open ? 'nav--open' : ''}`} aria-label={navLabel}>
           {navItems.map((item) => (
